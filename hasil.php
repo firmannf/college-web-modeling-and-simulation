@@ -16,12 +16,12 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <title>Model Simulasi Terlarutnya Obat dalam Darah</title>
+    <title>Model Simulasi Uji Laboratorium Alat Penjernih Air Minum</title>
 </head>
 
 <body>
     <div class="header-text">
-        <h2>Model Simulasi Terlarutnya Obat dalam Darah</h2>
+        <h2>Model Simulasi Uji Laboratorium Alat Penjernih Air Minum</h2>
         <p class="subtitle" style="color: #009688;">MOSI 8 &middot; Kelompok 5</p>
     </div>
     <div class="container">
@@ -95,6 +95,13 @@ if (isset($_POST['submit'])) {
                         $xi_and_yi_result[$i] = array("x" => $xi[$i], "y" => $yi_result[$i]);
                         $sum_error = $sum_error + $error[$i];
                     }
+                    
+                    $yi_long_term_result = array();
+                    $xi_and_yi_long_term_result = array();
+                    for ($i=1; $i <= 650; $i++) { 
+                        $yi_long_term_result[$i] = round($a_small / (1 + ($b_small * $i)), 5);
+                        $xi_and_yi_long_term_result[$i] = array("x" => $i, "y" => $yi_long_term_result[$i]);
+                    }
 
                     for ($i=1; $i <= $jumlah; $i++) { 
                     ?>                        
@@ -115,9 +122,11 @@ if (isset($_POST['submit'])) {
                     <?php
                     }
                     
-                    $json_yi = json_encode(array_values($xi_and_yi), JSON_NUMERIC_CHECK);
-                    $json_yi_result = json_encode(array_values($xi_and_yi_result), JSON_NUMERIC_CHECK);
+                    $json_xi_and_yi = json_encode(array_values($xi_and_yi), JSON_NUMERIC_CHECK);
+                    $json_xi_and_yi_result = json_encode(array_values($xi_and_yi_result), JSON_NUMERIC_CHECK);
+                    $json_xi_and_yi_long_term_result = json_encode(array_values($xi_and_yi_long_term_result), JSON_NUMERIC_CHECK);
                     ?>  
+
                     <tr>
                         <td><b>Jumlah</b></td>
                         <td><?php echo $sum_xi;?></td>
@@ -148,6 +157,14 @@ if (isset($_POST['submit'])) {
             <p class="subtitle">Grafik perhitungan menggunakan metode resiprok</p>
             <canvas id="grafik_perhitungan"></canvas>
         </div>
+        
+        <br/>
+
+        <div class="card center" style="width: 80%;">
+            <p class="title">Grafik Perhitungan Simulasi Jangka Panjang</p>
+            <p class="subtitle">Grafik perhitungan simulasi jangka panjang menggunakan metode resiprok</p>
+            <canvas id="grafik_perhitungan_simulasi_jangka_panjang"></canvas>
+        </div>
     </div>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -161,21 +178,45 @@ if (isset($_POST['submit'])) {
                 label: "Data asli",
                 borderColor: window.chartColors.red,
                 backgroundColor: color(window.chartColors.red).alpha(0.2).rgbString(),
-                data: <?php echo print_r($json_yi, true); ?>
+                data: <?php echo print_r($json_xi_and_yi, true); ?>
             }, {
                 label: "Data simulasi",
                 borderColor: window.chartColors.blue,
                 backgroundColor: color(window.chartColors.blue).alpha(0.2).rgbString(),
-                data: <?php echo print_r($json_yi_result, true); ?>
+                data: <?php echo print_r($json_xi_and_yi_result, true); ?>
+            }]
+        };
+        
+        var scatterChartDataLongTerm = {
+            datasets: [{
+                label: "Data simulasi",
+                borderColor: window.chartColors.blue,
+                backgroundColor: color(window.chartColors.blue).alpha(0.2).rgbString(),
+                data: <?php echo print_r($json_xi_and_yi_long_term_result, true); ?>
             }]
         };
 
-        window.onload = function() {
+        $(document).ready(function () {
             var ctx = document.getElementById("grafik_perhitungan").getContext("2d");
             window.myScatter = Chart.Scatter(ctx, {
-                data: scatterChartData
+                data: scatterChartData,
+                options: {
+                    animation: {
+                        duration: 2000
+                    }
+                }
             });
-        };
+            
+            var ctxLongTerm = document.getElementById("grafik_perhitungan_simulasi_jangka_panjang").getContext("2d");
+            window.myScatter = Chart.Scatter(ctxLongTerm, {
+                data: scatterChartDataLongTerm,
+                options: {
+                    animation: {
+                        duration: 2000
+                    }
+                }
+            });
+        });
     </script>
 </body>
 

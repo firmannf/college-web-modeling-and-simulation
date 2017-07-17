@@ -12,12 +12,12 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <title>Model Simulasi Terlarutnya Obat dalam Darah</title>
+    <title>Model Simulasi Uji Laboratorium Alat Penjernih Air Minum</title>
 </head>
 
 <body>
     <div class="header-text">
-        <h2>Model Simulasi Terlarutnya Obat dalam Darah</h2>
+        <h2>Model Simulasi Uji Laboratorium Alat Penjernih Air Minum</h2>
         <p class="subtitle" style="color: #009688;">MOSI 8 &middot; Kelompok 5</p>
     </div>
     <div class="container">
