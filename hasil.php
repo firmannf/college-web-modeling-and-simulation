@@ -15,7 +15,6 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <title>Model Simulasi Uji Laboratorium Alat Penjernih Air Minum</title>
 </head>
@@ -29,7 +28,7 @@ if (isset($_POST['submit'])) {
         <div class="table-responsive card center" style="width: 80%;">
             <p class="title">Tabel Perhitungan</p>
             <p class="subtitle">Tabel perhitungan menggunakan metode resiprok</p>
-            <table class="table table-striped table-bordered" >
+            <table class="table table-hover table-bordered">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -156,7 +155,7 @@ if (isset($_POST['submit'])) {
         <div class="table-responsive card center" style="width: 80%;">
             <p class="title">Tabel Perhitungan Simulasi Jangka Panjang</p>
             <p class="subtitle">Tabel perhitungan simulasi jangka panjang menggunakan metode resiprok</p>
-            <table id="table-long-term-graph" class="table table-striped table-bordered" >
+            <table id="table-long-term-graph" class="table table-hover table-bordered">
                 <thead>
                     <tr>
                         <th>No</th>
