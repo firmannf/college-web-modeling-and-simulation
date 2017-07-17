@@ -17,7 +17,7 @@
         <p class="subtitle" style="color: #009688;">MOSI 8 &middot; Kelompok 5</p>
     </div>
     <div class="container">
-        <div class="card center" style="width: 60%;">
+        <div class="card center" style="width: 80%;">
             <form method="post" action="input.php">
                 <div class="form-group">
                     <p class="title">Jumlah Data</p>

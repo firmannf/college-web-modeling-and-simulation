@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) {
         <p class="subtitle" style="color: #009688;">MOSI 8 &middot; Kelompok 5</p>
     </div>
     <div class="container">
-        <div class="card center" style="width: 60%;">
+        <div class="card center" style="width: 80%;">
             <form method="post" action="hasil.php">
                 <div class="form-group">
                     <p class="title">Nilai Yi</p>
@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
                     <?php
                     for ($i=1; $i <= $jumlah; $i++) { 
                     ?>
-                        <input class="form-control" type="number" name="y<?php echo $i;?>" placeholder="Y<?php echo $i;?>" step="0.001" required/>
+                        <input class="form-control" type="number" name="y<?php echo $i;?>" placeholder="Y<?php echo $i;?>" step="0.00001" required/>
                         <br/>
                     <?php    
                     }
