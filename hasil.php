@@ -71,12 +71,12 @@ if (isset($_POST['submit'])) {
                         $sum_xi_sqr = $sum_xi_sqr + $xi_sqr[$i];
                     }
 
-                    $avg_xi = $sum_xi / $jumlah;
-                    $avg_yi = $sum_yi / $jumlah;
-                    $avg_xi_per_yi = $sum_xi_per_yi / $jumlah;
-                    $avg_one_per_yi = $sum_one_per_yi / $jumlah;
-                    $avg_xi_sqr = $sum_xi_sqr / $jumlah;
-
+                    $avg_xi = round($sum_xi / $jumlah, 5);
+                    $avg_yi = round($sum_yi / $jumlah, 5);
+                    $avg_xi_per_yi = round($sum_xi_per_yi / $jumlah ,5);
+                    $avg_one_per_yi = round($sum_one_per_yi / $jumlah, 5);
+                    $avg_xi_sqr = round($sum_xi_sqr / $jumlah, 5);
+                     
                     $b_big = round(((10 * $sum_xi_per_yi) - ($sum_xi * $sum_one_per_yi)) / ((10 * $sum_xi_sqr) - pow($sum_xi, 2)), 5);
                     $a_big = round(($avg_one_per_yi - ($b_big * $avg_xi)), 5);
                     $a_small = round(1 / $a_big, 5);
@@ -96,6 +96,9 @@ if (isset($_POST['submit'])) {
                         $sum_error = $sum_error + $error[$i];
                     }
                     
+                    $avg_error = round($sum_error / $jumlah, 5);
+                    $result_error = round(($avg_error / $avg_yi), 5);
+
                     for ($i=1; $i <= $jumlah; $i++) { 
                     ?>                        
                         <tr>
@@ -136,10 +139,16 @@ if (isset($_POST['submit'])) {
                         <td><?php echo $avg_xi_per_yi;?></td>
                         <td><?php echo $avg_one_per_yi;?></td>
                         <td><?php echo $avg_xi_sqr;?></td>
-                        <td colspan="6" style="background-color: #FAFAFA;"></td>
+                        <td colspan="5" style="background-color: #FAFAFA;"></td>
+                        <td><?php echo $avg_error;?></td>
                     </tr>
+                    
                 </tbody>
             </table>
+
+            <div class=" text-right">
+                <span class="label label-danger">Hasil Nilai Error</span>&nbsp;&nbsp;&nbsp;<?php echo $result_error;?> %
+            </div>
         </div>
 
         <br/>
