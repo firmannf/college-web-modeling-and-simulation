@@ -28,12 +28,12 @@ if (isset($_POST['submit'])) {
         <div class="table-responsive card center" style="width: 80%;">
             <p class="title">Tabel Perhitungan</p>
             <p class="subtitle">Tabel perhitungan menggunakan metode resiprok</p>
-            <table class="table table-bordered">
+            <table class="table table-striped table-bordered" >
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th>Xi</th>
-                        <th>Yi</th>
+                        <th align="top">No</th>
+                        <th>Waktu Pengamatan Bulan ke (Xi)</th>
+                        <th>Kadar Pertikel Air Minum (mg) (Yi)</th>
                         <th>Xi / Yi</th>
                         <th>1 / Yi</th>
                         <th>Xi<sup>2</sup></th>

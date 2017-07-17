@@ -8,6 +8,10 @@ body {
     background: #FAFAFA;
     padding-bottom: 56px;
 }
+.table > thead > tr > th {
+     vertical-align: middle;
+     text-align: center;
+}
 
 .btn-primary {
     border: 2px solid #009688;
