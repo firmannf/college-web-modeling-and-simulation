@@ -14,6 +14,7 @@ if (isset($_POST['submit'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <title>Model Simulasi Uji Laboratorium Alat Penjernih Air Minum</title>
@@ -21,8 +22,8 @@ if (isset($_POST['submit'])) {
 
 <body>
     <div class="header-text">
-        <h2>Model Simulasi Uji Laboratorium Alat Penjernih Air Minum</h2>
-        <p class="subtitle" style="color: #009688;">MOSI 8 &middot; Kelompok 5</p>
+        <h2><b>Model Simulasi Uji Laboratorium Alat Penjernih Air Minum</b></h2>
+        <p class="subtitle">MOSI 8 &middot; Kelompok 5</p>
     </div>
     <div class="container">
         <div class="table-responsive card center" style="width: 80%;">
@@ -31,7 +32,7 @@ if (isset($_POST['submit'])) {
             <table class="table table-striped table-bordered" >
                 <thead>
                     <tr>
-                        <th align="top">No</th>
+                        <th>No</th>
                         <th>Waktu Pengamatan Bulan ke (Xi)</th>
                         <th>Kadar Pertikel Air Minum (mg) (Yi)</th>
                         <th>Xi / Yi</th>
@@ -96,13 +97,6 @@ if (isset($_POST['submit'])) {
                         $sum_error = $sum_error + $error[$i];
                     }
                     
-                    $yi_long_term_result = array();
-                    $xi_and_yi_long_term_result = array();
-                    for ($i=1; $i <= 650; $i++) { 
-                        $yi_long_term_result[$i] = round($a_small / (1 + ($b_small * $i)), 5);
-                        $xi_and_yi_long_term_result[$i] = array("x" => $i, "y" => $yi_long_term_result[$i]);
-                    }
-
                     for ($i=1; $i <= $jumlah; $i++) { 
                     ?>                        
                         <tr>
@@ -124,7 +118,6 @@ if (isset($_POST['submit'])) {
                     
                     $json_xi_and_yi = json_encode(array_values($xi_and_yi), JSON_NUMERIC_CHECK);
                     $json_xi_and_yi_result = json_encode(array_values($xi_and_yi_result), JSON_NUMERIC_CHECK);
-                    $json_xi_and_yi_long_term_result = json_encode(array_values($xi_and_yi_long_term_result), JSON_NUMERIC_CHECK);
                     ?>  
 
                     <tr>
@@ -160,6 +153,48 @@ if (isset($_POST['submit'])) {
         
         <br/>
 
+        <div class="table-responsive card center" style="width: 80%;">
+            <p class="title">Tabel Perhitungan Simulasi Jangka Panjang</p>
+            <p class="subtitle">Tabel perhitungan simulasi jangka panjang menggunakan metode resiprok</p>
+            <table id="table-long-term-graph" class="table table-striped table-bordered" >
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Waktu Pengamatan Bulan ke (Xi)</th>
+                        <th>Y = a / (1 + bx)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $xi = array();
+                    $yi_long_term_result = array();
+                    $xi_and_yi_long_term_result = array();
+                    for ($i=1; $i <= 650; $i++) { 
+                        $xi[$i] = $i;
+                        $yi_long_term_result[$i] = round($a_small / (1 + ($b_small * $i)), 5);
+                        $xi_and_yi_long_term_result[$i] = array("x" => $i, "y" => $yi_long_term_result[$i]);
+                    }
+
+                    for ($i=1; $i <= 650; $i++) { 
+                    ?>                        
+                        <tr>
+                            <td><?php echo $i;?></td>
+                            <td><?php echo $xi[$i];?></td>
+                            <td><?php echo $yi_long_term_result[$i];?></td>
+                        </tr>  
+                    <?php
+                    }
+                    
+                    $json_xi_and_yi = json_encode(array_values($xi_and_yi), JSON_NUMERIC_CHECK);
+                    $json_xi_and_yi_result = json_encode(array_values($xi_and_yi_result), JSON_NUMERIC_CHECK);
+                    $json_xi_and_yi_long_term_result = json_encode(array_values($xi_and_yi_long_term_result), JSON_NUMERIC_CHECK);
+                    ?>  
+                </tbody>
+            </table>
+        </div>
+
+        <br/>
+
         <div class="card center" style="width: 80%;">
             <p class="title">Grafik Perhitungan Simulasi Jangka Panjang</p>
             <p class="subtitle">Grafik perhitungan simulasi jangka panjang menggunakan metode resiprok</p>
@@ -171,7 +206,13 @@ if (isset($_POST['submit'])) {
     <script src="js/pace.min.js"></script>
     <script src="js/chart.min.js"></script>
     <script src="js/util.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
+    <script src="js/dataTables.bootstrap.min.js"></script>
     <script>
+         $(document).ready(function () {
+             $('#table-long-term-graph').DataTable();
+         });
+
         var color = Chart.helpers.color;
         var scatterChartData = {
             datasets: [{

@@ -8,6 +8,7 @@ body {
     background: #FAFAFA;
     padding-bottom: 56px;
 }
+
 .table > thead > tr > th {
      vertical-align: middle;
      text-align: center;
@@ -29,6 +30,21 @@ body {
     border: 2px solid #009688;
     color: #009688;
     background-color: transparent;
+}
+
+.pagination>.active>a,
+.pagination>.active>a:focus,
+.pagination>.active>a:hover,
+.pagination>.active>span,
+.pagination>.active>span:focus,
+.pagination>.active>span:hover {
+    background-color: #009688;
+    border-color: #009688;
+}
+
+.pagination>li>a,
+.pagination>li>span {
+    color: #009688;
 }
 
 .pace {
@@ -56,7 +72,7 @@ body {
 .header-text {
     margin: 56px auto 64px;
     text-align: center;
-    color: #BDBDBD;
+    color: #009688;
 }
 
 .card {

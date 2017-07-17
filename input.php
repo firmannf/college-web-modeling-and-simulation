@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
 <body>
     <div class="header-text">
         <h2>Model Simulasi Uji Laboratorium Alat Penjernih Air Minum</h2>
-        <p class="subtitle" style="color: #009688;">MOSI 8 &middot; Kelompok 5</p>
+        <p class="subtitle">MOSI 8 &middot; Kelompok 5</p>
     </div>
     <div class="container">
         <div class="card center" style="width: 80%;">
