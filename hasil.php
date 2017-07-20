@@ -117,7 +117,7 @@ if (isset($_POST['submit'])) {
                         </tr>  
                     <?php
                     }
-                    
+                    $json_yi = json_encode(array_values($yi), JSON_NUMERIC_CHECK);
                     $json_xi_and_yi = json_encode(array_values($xi_and_yi), JSON_NUMERIC_CHECK);
                     $json_xi_and_yi_result = json_encode(array_values($xi_and_yi_result), JSON_NUMERIC_CHECK);
                     ?>  
@@ -250,10 +250,18 @@ if (isset($_POST['submit'])) {
             window.myScatter = Chart.Scatter(ctx, {
                 data: scatterChartData,
                 options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                            }
+                        }]
+                    },
                     animation: {
                         duration: 2000
                     }
                 }
+
             });
             
             var ctxLongTerm = document.getElementById("grafik_perhitungan_simulasi_jangka_panjang").getContext("2d");
@@ -263,6 +271,7 @@ if (isset($_POST['submit'])) {
                     animation: {
                         duration: 2000
                     }
+                    
                 }
             });
         });
