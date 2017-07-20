@@ -97,7 +97,7 @@ if (isset($_POST['submit'])) {
                     }
                     
                     $avg_error = round($sum_error / $jumlah, 5);
-                    $result_error = round(($avg_error / $avg_yi), 5);
+                    $result_error = round(($avg_error / $avg_yi) * 100, 5);
 
                     for ($i=1; $i <= $jumlah; $i++) { 
                     ?>                        
