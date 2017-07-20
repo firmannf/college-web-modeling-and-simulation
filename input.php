@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
             <form method="post" action="hasil.php">
                 <div class="form-group">
                     <p class="title">Nilai Yi</p>
-                    <p class="subtitle">Masukkan nilai Yi</p>
+                    <p class="subtitle">Masukkan nilai Yi yaitu nilai kadar partikel air minum (mg)</p>
                     <?php
                     for ($i=1; $i <= $jumlah; $i++) { 
                     ?>
